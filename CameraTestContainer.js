@@ -89,14 +89,14 @@ function CameraTestContainer() {
         pixelFormat: 'rgb',
         // use uint8 as float seems buggy on iOS:
         // see: https://github.com/mrousavy/vision-camera-resize-plugin/issues/40
-        dataType: 'uint8'
+        dataType: 'float32'
       })
   
       const arrayData = new Array(width * height * 4)
       for (let i = 0, j = 0; i < data.length; i += 3,  j += 4) {
-        arrayData[j] = data[i]        // R
-        arrayData[j+1] = data[i + 1]  // G
-        arrayData[j+2] = data[i + 2]  // B
+        arrayData[j] = data[i] * 255       // R
+        arrayData[j+1] = data[i + 1] * 255 // G
+        arrayData[j+2] = data[i + 2] * 255 // B
         arrayData[j+3] = 255          // A
       }
 
